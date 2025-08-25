@@ -4,13 +4,10 @@
 
 int main(){
     int C1_NPT,C1_POP,C2_NPT,C2_POP; //C1_NPT e C2_NPT = Numero de Pontos Turisticos; C1_POP e C2_POP = Quantidade de População
-    float C1_PIB,C1_AREA,C2_PIB,C2_AREA; //Variaveis que armazenam Area e PIB de cada carta
-    char C1_EST,C2_EST; // Codigos do Estado digitado (de A até H)
-    char C1_CIDADE[50], C2_CIDADE[50]; // Nome de cada cidade
-    char C1_COD[3],C2_COD[3]; // Codiga de cada carta digitado
-
+    char C1_CIDADE[50], C2_CIDADE[50],C1_COD[3],C2_COD[3],C1_EST,C2_EST; // Nome de cada cidade, Codiga de cada carta digitado e Codigos do Estado digitado (de A até H)
+    float  C1_DENSIDADE,C2_DENSIDADE,C1_PIB,C1_AREA,C2_PIB,C2_AREA; //Variaveis que armazenam Area e PIB de cada carta e Variaveis de Densidade Populacional e PIB per Capita;
+    double C1_PIB_CAPITA,C2_PIB_CAPITA;
     //Cadastro Carta Nª1 
-    
     printf("Cadastro Carta Nª 01\n");
     
     // Solicita o Estado para o usuario
@@ -43,9 +40,13 @@ int main(){
     //Solciita a Qtd de pontos turistico.
     printf("\nDigite a quantidade de Pontos Turisticos:\n");
     scanf("%d",&C1_NPT);
-
     
+    // Calculo de Densidade Populacional e PIB per Capita
+    C1_DENSIDADE =  C1_POP/C1_AREA;
+    C1_PIB_CAPITA = (C1_PIB/C1_POP) * 1000000000;
+
     printf("\nFim Cadastro Carta Nª 01!\n"); 
+
     printf("---------------------------------------------\n");
 
     //Cadastro Carta Nª2
@@ -82,11 +83,13 @@ int main(){
     printf("\nDigite a quantidade de Pontos Turisticos:\n");
     scanf("%d",&C2_NPT);
 
-    
-    printf("\nFim Cadastro Carta Nª 02!\n");
+    // Calculo de Densidade Populacional e PIB per Capita
+    C2_DENSIDADE =  C2_POP/C2_AREA;
+    C2_PIB_CAPITA = (C2_PIB/C2_POP) * 1000000000;
 
-    //Exibiação Carta Nª1
+    printf("\nFim Cadastro Carta Nª 02!\n");
     
+    //Exibiação Carta Nª1
     printf("---------------------------------------------\n");
 
     //Exibi os dados da Carta 01
@@ -96,9 +99,11 @@ int main(){
     printf("Nome da Cidade:  %s\n",C1_CIDADE);
     printf("População:  %d\n",C1_POP);
     printf("Área:  %.2f km²\n",C1_AREA);
-    printf("PIB:  %.2f bilhões de reais\n",C1_PIB);
+    printf("PIB:  R$ %.2f bilhões de reais\n",C1_PIB);
     printf("Numero de Pontos Turistico:  %d\n",C1_NPT);
-    
+    printf("Densidade Populaciona: %.2f hab/km².\n",C1_DENSIDADE);
+    printf("PIB Per Capita: R$ %5.2f Reais\n",C1_PIB_CAPITA);
+
     //Exibiação Carta Nª2
     printf("---------------------------------------------\n");
 
@@ -111,6 +116,7 @@ int main(){
     printf("Área:  %.2f km²\n",C2_AREA);
     printf("PIB:  %.2f bilhões de reais\n",C2_PIB);
     printf("Numero de Pontos Turistico:  %d\n",C2_NPT);
-
+    printf("Densidade Populaciona: %.2f hab/km².\n",C2_DENSIDADE);
+    printf("PIB Per Capita: R$ %5.2f Reais\n",C2_PIB_CAPITA);
     return 0;
 }
