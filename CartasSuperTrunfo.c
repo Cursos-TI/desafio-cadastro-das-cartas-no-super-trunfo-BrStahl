@@ -3,10 +3,12 @@
 #include <string.h>
 
 int main(){
-    int C1_NPT,C1_POP,C2_NPT,C2_POP; //C1_NPT e C2_NPT = Numero de Pontos Turisticos; C1_POP e C2_POP = Quantidade de População
+    int C1_NPT,C2_NPT;
+    unsigned long int C1_POP, C2_POP; //C1_NPT e C2_NPT = Numero de Pontos Turisticos; C1_POP e C2_POP = Quantidade de População
     char C1_CIDADE[50], C2_CIDADE[50],C1_COD[3],C2_COD[3],C1_EST,C2_EST; // Nome de cada cidade, Codiga de cada carta digitado e Codigos do Estado digitado (de A até H)
-    float  C1_DENSIDADE,C2_DENSIDADE,C1_PIB,C1_AREA,C2_PIB,C2_AREA; //Variaveis que armazenam Area e PIB de cada carta e Variaveis de Densidade Populacional e PIB per Capita;
+    float  C1_DENSIDADE,C2_DENSIDADE,C1_PIB,C1_AREA,C2_PIB,C2_AREA,C1_SUPER_PODER,C2_SUPER_PODER; //Variaveis que armazenam Area e PIB de cada carta e Variaveis de Densidade Populacional e PIB per Capita;
     double C1_PIB_CAPITA,C2_PIB_CAPITA;
+
     //Cadastro Carta Nª1 
     printf("Cadastro Carta Nª 01\n");
     
@@ -44,6 +46,8 @@ int main(){
     // Calculo de Densidade Populacional e PIB per Capita
     C1_DENSIDADE =  C1_POP/C1_AREA;
     C1_PIB_CAPITA = (C1_PIB/C1_POP) * 1000000000;
+
+    C1_SUPER_PODER = (float)C1_POP + C1_AREA + C1_PIB + C1_PIB_CAPITA + (float)C1_NPT + (1/C1_DENSIDADE);
 
     printf("\nFim Cadastro Carta Nª 01!\n"); 
 
@@ -87,6 +91,8 @@ int main(){
     C2_DENSIDADE =  C2_POP/C2_AREA;
     C2_PIB_CAPITA = (C2_PIB/C2_POP) * 1000000000;
 
+    C2_SUPER_PODER = (float)C2_POP + C2_AREA + C2_PIB + C2_PIB_CAPITA + (float)C2_NPT + (1/C2_DENSIDADE);
+
     printf("\nFim Cadastro Carta Nª 02!\n");
     
     //Exibiação Carta Nª1
@@ -103,6 +109,7 @@ int main(){
     printf("Numero de Pontos Turistico:  %d\n",C1_NPT);
     printf("Densidade Populaciona: %.2f hab/km².\n",C1_DENSIDADE);
     printf("PIB Per Capita: R$ %5.2f Reais\n",C1_PIB_CAPITA);
+    printf("Super Poder: %.2f\n",C1_SUPER_PODER);
 
     //Exibiação Carta Nª2
     printf("---------------------------------------------\n");
@@ -118,5 +125,73 @@ int main(){
     printf("Numero de Pontos Turistico:  %d\n",C2_NPT);
     printf("Densidade Populaciona: %.2f hab/km².\n",C2_DENSIDADE);
     printf("PIB Per Capita: R$ %5.2f Reais\n",C2_PIB_CAPITA);
+    printf("Super Poder: %.2f\n",C2_SUPER_PODER);
+
+    //Exibiação de Comparação entre as Duas Cartas
+    printf("---------------------------------------------\n");
+
+    printf("\nResultado Comparação entre as cartas\n");
+    // Compara População
+    if (C1_POP > C2_POP){
+        printf("População: Carta 1 venceu (1)\n");
+    } else if (C2_POP > C1_POP){
+        printf("População: Carta 2 venceu (0)\n");
+    } else if (C1_POP == C2_POP){
+        printf("População: Empate\n");
+    }
+
+    //Compara Area
+    if (C1_AREA > C2_AREA){
+        printf("Área: Carta 1 venceu (1)\n");
+    } else if (C2_AREA > C1_AREA){
+        printf("Área: Carta 2 venceu (0)\n");
+    } else if (C1_AREA == C2_AREA){
+        printf("Área: Empate\n");
+    }
+
+    //Compara PIB
+    if (C1_PIB > C2_PIB){
+        printf("PIB: Carta 1 venceu (1)\n");
+    } else if (C2_PIB > C1_PIB){
+        printf("PIB: Carta 2 venceu (0)\n");
+    } else if (C1_PIB == C2_PIB){
+        printf("PIB: Empate\n");
+    }
+
+    //Compara NPT 
+    if (C1_NPT > C2_NPT){
+        printf("Numeros de Pontos Turisticos: Carta 1 venceu (1)\n");
+    } else if (C2_NPT > C1_NPT){
+        printf("Numeros de Pontos Turisticos: Carta 2 venceu (0)\n");
+    } else if (C1_NPT == C2_NPT){
+        printf("Numeros de Pontos Turisticos: Empate\n");
+    }
+
+    //Compara PIB Per Capita 
+    if (C1_PIB_CAPITA > C2_PIB_CAPITA){
+        printf("PIB Per Capita: Carta 1 venceu (1)\n");
+    } else if (C2_PIB_CAPITA > C1_PIB_CAPITA){
+        printf("PIB Per Capita: Carta 2 venceu (0)\n");
+    } else if (C1_PIB_CAPITA == C2_PIB_CAPITA){
+        printf("PIB Per Capita: Empate\n");
+    }
+
+    //Compara Densidade Populacional
+    if (C1_DENSIDADE > C2_DENSIDADE){
+        printf("Densidade Populacional: Carta 2 venceu (0)\n");
+    } else if (C2_DENSIDADE > C1_DENSIDADE){
+        printf("Densidade Populacional: Carta 1 venceu (1)\n");
+    } else if (C1_DENSIDADE == C2_DENSIDADE){
+        printf("Densidade Populacional: Empate\n");
+    }
+
+    //Compara Densidade Populacional
+    if (C1_SUPER_PODER > C2_SUPER_PODER){
+        printf("Super Poder: Carta 1 venceu (1)\n");
+    } else if (C2_SUPER_PODER > C1_SUPER_PODER){
+        printf("Super Poder: Carta 2 venceu (0)\n");
+    } else if (C1_SUPER_PODER == C2_SUPER_PODER){
+        printf("Densidade Populacional: Empate\n");
+    }   
     return 0;
 }
